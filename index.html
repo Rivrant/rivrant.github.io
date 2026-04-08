@@ -1,25 +1,57 @@
-HTML 
-
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
   <title>Rivrant</title>
   <style>
     body {
+      margin: 0;
       background: #0a0a0a;
       color: white;
-      font-family: Arial;
-      text-align: center;
-      padding: 100px;
+      font-family: Arial, sans-serif;
     }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     h1 {
-      font size: 50px;
-    }  
+      font-size: 60px;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
     p {
-      color: gray;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      background: white;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #ddd;
     }
   </style>
 </head>
 
+<body>
+  <div class="container">
+    <h1>RIVRANT</h1>
+    <p>Brand & Production</p>
+    <button>View Work</button>
+  </div>
+</body>
 </html>
 
