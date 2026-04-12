@@ -6,7 +6,7 @@
   <title>RIVRANT</title>
   <meta
     name="description"
-    content="RIVRANT is a creative production platform focused on storytelling, culture, styling, portraiture, and visual direction."
+    content="RIVRANT is a visual platform for styling, portraiture, garments, atmosphere, and image-led storytelling."
   />
   <style>
     :root {
@@ -51,11 +51,6 @@
       background: none;
       color: inherit;
       cursor: pointer;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
     }
 
     .page-bg {
@@ -475,7 +470,7 @@
       border-radius: 28px;
       padding: 28px;
       box-shadow: var(--shadow);
-      transition: transform 0.32s ease, border-color 0.32s ease, background 0.32s ease;
+      transition: transform 0.4s cubic-bezier(.2,.7,.2,1), border-color 0.4s cubic-bezier(.2,.7,.2,1), background 0.4s cubic-bezier(.2,.7,.2,1);
     }
 
     .panel:hover {
@@ -516,7 +511,8 @@
     .services-card h3,
     .feature-card h3,
     .contact-box h3,
-    .editorial-card h3 {
+    .editorial-card h3,
+    .manifesto-box h3 {
       font-size: 1.25rem;
       letter-spacing: -0.03em;
       margin-bottom: 14px;
@@ -526,7 +522,8 @@
     .services-card p,
     .feature-card p,
     .contact-box p,
-    .editorial-card p {
+    .editorial-card p,
+    .manifesto-box p {
       color: var(--muted);
     }
 
@@ -552,6 +549,17 @@
       position: absolute;
       left: 0;
       top: 0.55em;
+    }
+
+    .manifesto-box {
+      max-width: 900px;
+    }
+
+    .manifesto-box p {
+      font-size: clamp(1.2rem, 2.6vw, 1.8rem);
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      color: var(--white);
     }
 
     .services-grid {
@@ -606,6 +614,49 @@
       color: rgba(255,255,255,0.72);
       font-size: 0.82rem;
       margin-bottom: 38px;
+    }
+
+    .signature-break {
+      min-height: 82vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.15)),
+        url('red1.JPG') center/cover no-repeat;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .signature-break .container {
+      padding-bottom: 42px;
+    }
+
+    .signature-copy {
+      max-width: 640px;
+    }
+
+    .signature-copy small {
+      display: block;
+      color: rgba(255,255,255,0.62);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 14px;
+      font-size: 0.74rem;
+    }
+
+    .signature-copy h2 {
+      font-size: clamp(2.4rem, 6vw, 5.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
+    }
+
+    .signature-copy p {
+      color: rgba(255,255,255,0.78);
+      font-size: 1rem;
+      max-width: 480px;
     }
 
     .feature-grid {
@@ -728,6 +779,12 @@
       box-shadow: var(--shadow);
       min-height: 260px;
       isolation: isolate;
+      transition: transform 0.45s cubic-bezier(.2,.7,.2,1), border-color 0.45s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .mosaic:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.14);
     }
 
     .mosaic::before {
@@ -853,6 +910,10 @@
       .about-image {
         min-height: 380px;
       }
+
+      .signature-break {
+        min-height: 68vh;
+      }
     }
 
     @media (max-width: 760px) {
@@ -931,6 +992,10 @@
         min-height: 280px;
       }
 
+      .signature-break {
+        min-height: 60vh;
+      }
+
       .panel,
       .statement-box {
         padding: 22px;
@@ -981,7 +1046,7 @@
 
         <div class="nav-links" id="navLinks">
           <a href="#about">About</a>
-          <a href="#services">Services</a>
+          <a href="#services">Focus</a>
           <a href="#worlds">Worlds</a>
           <a href="#contact" class="nav-cta">Contact</a>
         </div>
@@ -1028,13 +1093,24 @@
         </div>
       </section>
 
+      <section class="reveal">
+        <div class="container">
+          <div class="panel manifesto-box">
+            <h3>Manifesto</h3>
+            <p>
+              RIVRANT is not about content. It is about image direction, restraint, and building a visual world that feels intentional.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section id="about" class="reveal">
         <div class="container">
           <div class="section-intro">
             <div class="kicker">Overview</div>
             <h2>Built for fashion, portraiture, and visual worlds with direction.</h2>
             <p>
-              RIVRANT is built to present image-making in a way that feels intentional, editorial, and distinct.
+              The image should land first. The structure should hold it. Everything else follows.
             </p>
           </div>
 
@@ -1043,7 +1119,7 @@
               <div class="about-image-copy">
                 <h3>Direction with atmosphere.</h3>
                 <p>
-                  The image should already say something before anyone reads a single line.
+                  Presence is built through framing, pacing, contrast, and restraint.
                 </p>
               </div>
             </div>
@@ -1072,7 +1148,7 @@
             <div class="kicker">Focus</div>
             <h2>What the platform carries.</h2>
             <p>
-              Images grouped by feeling and function, so the visuals actually support the section they live in.
+              Images grouped by function, not dumped into a feed.
             </p>
           </div>
 
@@ -1085,7 +1161,7 @@
               <div>
                 <h3>Accessories, objects, and garment detail</h3>
                 <p>
-                  Rings, surfaces, distressed pieces, and tactile details that define the tone of the world.
+                  Rings, surfaces, distressed pieces, and tactile details define the tone.
                 </p>
               </div>
             </div>
@@ -1111,10 +1187,22 @@
               <div>
                 <h3>Environment and concept</h3>
                 <p>
-                  Nature, place, and scene-building visuals that widen the world around the people and clothes.
+                  Nature, place, and scene-building widen the world around the people and clothes.
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="signature-break">
+        <div class="container">
+          <div class="signature-copy">
+            <small>Signature Frame</small>
+            <h2>Presence is built, not added.</h2>
+            <p>
+              The strongest image does not ask for attention. It controls the room the second it appears.
+            </p>
           </div>
         </div>
       </section>
@@ -1125,7 +1213,7 @@
             <div class="kicker">Worlds</div>
             <h2>Different image groups, held inside the structure.</h2>
             <p>
-              Instead of one gallery block, the work is broken into visual territories.
+              Not one wall. Separate territories with different pressure.
             </p>
           </div>
 
@@ -1135,7 +1223,7 @@
                 <small>Objects / Garments</small>
                 <h3>Material, wear, and constructed surface.</h3>
                 <p>
-                  The blazer, the chrome piece, the hat, and the table details all support the object-focused side of the brand.
+                  The blazer, the chrome piece, the hat, and the table details support the object side of the brand.
                 </p>
               </div>
             </div>
@@ -1159,7 +1247,7 @@
             <div class="kicker">Editorial Groups</div>
             <h2>Grouped by the feeling they carry.</h2>
             <p>
-              Each card below uses a different image family instead of dumping everything into one wall.
+              Each block pushes a different side of the visual language.
             </p>
           </div>
 
@@ -1169,7 +1257,7 @@
                 <small>Detail Language</small>
                 <h3>Close-ups, metal, hands, and accessories.</h3>
                 <p>
-                  Stronger for icon-like moments and section accents because the framing is tighter and graphic.
+                  Stronger for sharper, icon-like moments.
                 </p>
               </div>
             </div>
@@ -1179,7 +1267,7 @@
                 <small>Lookbook</small>
                 <h3>Silhouette, proportion, and full-body presentation.</h3>
                 <p>
-                  Better for fashion-led areas where the whole look needs room.
+                  Better where the whole look needs room.
                 </p>
               </div>
             </div>
@@ -1189,7 +1277,7 @@
                 <small>Scene Building</small>
                 <h3>Nature, softness, and environmental narrative.</h3>
                 <p>
-                  Used where the site needs breathing room and atmosphere instead of impact-only imagery.
+                  Used where the pacing needs air instead of impact-only imagery.
                 </p>
               </div>
             </div>
@@ -1203,7 +1291,7 @@
             <div class="kicker">Visual System</div>
             <h2>The rest of the archive, woven in.</h2>
             <p>
-              These are not gallery tiles. They act more like editorial spreads and supporting background blocks.
+              Supporting image blocks that keep the site moving.
             </p>
           </div>
 
@@ -1211,7 +1299,7 @@
             <div class="mosaic span-4 tall" style="background-image: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.08)), url('chrome.JPG');">
               <div class="mosaic-copy">
                 <small>Chrome</small>
-                <p>Used for object and texture-driven moments.</p>
+                <p>Texture and object language.</p>
               </div>
             </div>
 
@@ -1225,28 +1313,28 @@
             <div class="mosaic span-5 taller" style="background-image: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.08)), url('fit2.JPG');">
               <div class="mosaic-copy">
                 <small>Back View</small>
-                <p>Good for lookbook rhythm and motion between sections.</p>
+                <p>Lookbook rhythm and movement.</p>
               </div>
             </div>
 
             <div class="mosaic span-7 taller" style="background-image: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.08)), url('studio2.JPEG');">
               <div class="mosaic-copy">
                 <small>Studio II</small>
-                <p>Clean contrast against the darker fashion and nature images.</p>
+                <p>Controlled contrast against the darker frames.</p>
               </div>
             </div>
 
             <div class="mosaic span-6 tall" style="background-image: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.08)), url('styling.JPEG');">
               <div class="mosaic-copy">
                 <small>Styling</small>
-                <p>Works as supporting visual language for process and preparation.</p>
+                <p>Process, preparation, and visual intent.</p>
               </div>
             </div>
 
             <div class="mosaic span-6 tall" style="background-image: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.08)), url('nature2.PNG');">
               <div class="mosaic-copy">
                 <small>Environment</small>
-                <p>Softens the pacing and adds a wider world around the fashion work.</p>
+                <p>Breathing room around the harder imagery.</p>
               </div>
             </div>
           </div>
@@ -1269,12 +1357,12 @@
             <div>
               <h3>Start something clean.</h3>
               <p>
-                Replace this with your real email, Instagram, booking form, or project inquiry link.
+                For projects, collaborations, or creative direction inquiries: rivrantstudio@gmail.com
               </p>
             </div>
 
             <div class="contact-actions">
-              <a href="mailto:your@email.com" class="btn btn-primary">Email</a>
+              <a href="mailto:rivrantstudio@gmail.com" class="btn btn-primary">Email</a>
               <a href="#" class="btn btn-secondary">Instagram</a>
             </div>
           </div>
