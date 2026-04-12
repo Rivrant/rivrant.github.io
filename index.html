@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RIVRANT | Brand & Production</title>
+  <title>RIVRANT — Creative Production, Branding & Digital Presence</title>
   <meta
     name="description"
-    content=" RIVRANT is a creative production platform focused on storytelling, culture, and community. We produce films, documentaries, and short-term content that reflect real people and real emotion. "
+    content="RIVRANT is a creative production platform crafting brand direction, films, documentaries, and digital experiences rooted in culture, story, and emotion."
   />
   <style>
     :root {
-      --bg: #050505;
-      --panel: #0b0b0b;
-      --soft: #101010;
+      --bg: #030303;
+      --panel: rgba(255,255,255,0.035);
+      --panel-2: rgba(255,255,255,0.05);
       --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.16);
       --text: #f4f4f4;
-      --muted: rgba(255,255,255,0.62);
+      --muted: rgba(255,255,255,0.65);
       --muted-2: rgba(255,255,255,0.42);
       --white: #ffffff;
-      --radius: 24px;
       --shadow: 0 20px 70px rgba(0,0,0,0.35);
+      --radius: 26px;
+      --ease: cubic-bezier(.2,.7,.2,1);
     }
 
     * {
@@ -40,6 +42,10 @@
       line-height: 1.45;
     }
 
+    body.menu-open {
+      overflow: hidden;
+    }
+
     a {
       color: inherit;
       text-decoration: none;
@@ -47,31 +53,15 @@
 
     button {
       font: inherit;
+      border: none;
+      background: none;
+      color: inherit;
+      cursor: pointer;
     }
 
-    .page-bg {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.06), transparent 22%),
-        radial-gradient(circle at 80% 15%, rgba(255,255,255,0.04), transparent 18%),
-        radial-gradient(circle at 50% 85%, rgba(255,255,255,0.035), transparent 24%);
-      filter: blur(10px);
-      opacity: 0.8;
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.035;
-      background-image:
-        radial-gradient(circle at 25% 25%, #fff 0.6px, transparent 0.6px),
-        radial-gradient(circle at 75% 75%, #fff 0.6px, transparent 0.6px);
-      background-size: 20px 20px;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
@@ -81,16 +71,126 @@
       z-index: 2;
     }
 
+    .page-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(255,255,255,0.055), transparent 22%),
+        radial-gradient(circle at 82% 15%, rgba(255,255,255,0.045), transparent 18%),
+        radial-gradient(circle at 50% 86%, rgba(255,255,255,0.03), transparent 22%),
+        linear-gradient(180deg, #050505 0%, #020202 100%);
+      filter: blur(10px);
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.035;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 25% 25%, #fff 0.6px, transparent 0.6px),
+        radial-gradient(circle at 75% 75%, #fff 0.6px, transparent 0.6px);
+      background-size: 20px 20px;
+    }
+
+    .gate {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.07), transparent 30%),
+        linear-gradient(180deg, rgba(4,4,4,0.98), rgba(1,1,1,1));
+      transition:
+        opacity 0.8s var(--ease),
+        visibility 0.8s var(--ease),
+        transform 0.8s var(--ease);
+    }
+
+    .gate.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.02);
+      pointer-events: none;
+    }
+
+    .gate-card {
+      width: min(460px, 100%);
+      text-align: center;
+      padding: 46px 28px 34px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      background: rgba(255,255,255,0.02);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      animation: gateRise 1.15s var(--ease) both;
+    }
+
+    .gate-logo {
+      font-size: clamp(2.2rem, 7vw, 3.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      font-weight: 750;
+      text-transform: uppercase;
+      text-shadow: 0 0 28px rgba(255,255,255,0.16);
+    }
+
+    .gate-sub {
+      margin-top: 8px;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    .gate-btn {
+      margin-top: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 116px;
+      padding: 11px 20px;
+      border-radius: 999px;
+      background: var(--white);
+      color: #000;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 0 18px rgba(255,255,255,0.18);
+      transition: transform 0.28s ease, box-shadow 0.28s ease, opacity 0.28s ease;
+    }
+
+    .gate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(255,255,255,0.12);
+    }
+
+    .site-shell {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    }
+
+    body.site-ready .site-shell {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 20;
-      transition: transform 0.45s ease, background 0.35s ease, border-color 0.35s ease;
       background: rgba(5,5,5,0.18);
       border-bottom: 1px solid transparent;
       backdrop-filter: blur(0px);
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
     }
 
     .nav.scrolled {
@@ -108,7 +208,7 @@
     }
 
     .logo {
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       font-weight: 700;
       letter-spacing: 0.22em;
     }
@@ -122,26 +222,79 @@
     }
 
     .nav-links a {
-      transition: color 0.25s ease, opacity 0.25s ease;
+      transition: color 0.25s ease;
     }
 
     .nav-links a:hover {
       color: var(--white);
     }
 
-    .nav-cta {
-      padding: 11px 18px;
+    .nav-cta,
+    .btn,
+    .ghost-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 21px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      color: var(--white);
-      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+      transition: transform 0.28s ease, background 0.28s ease, color 0.28s ease, border-color 0.28s ease, opacity 0.28s ease;
+      font-weight: 600;
     }
 
-    .nav-cta:hover {
+    .nav-cta:hover,
+    .btn:hover,
+    .ghost-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-cta,
+    .ghost-btn,
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.02);
+      color: var(--white);
+    }
+
+    .nav-cta:hover,
+    .ghost-btn:hover,
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.09);
+    }
+
+    .btn-primary {
       background: var(--white);
       color: #000;
-      transform: translateY(-1px);
     }
+
+    .mobile-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .mobile-toggle span,
+    .mobile-toggle::before,
+    .mobile-toggle::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 1.5px;
+      background: #fff;
+      transition: transform 0.28s ease, opacity 0.28s ease;
+    }
+
+    .mobile-toggle::before { transform: translateY(-6px); }
+    .mobile-toggle::after { transform: translateY(6px); }
+
+    .mobile-toggle.active span { opacity: 0; }
+    .mobile-toggle.active::before { transform: rotate(45deg); }
+    .mobile-toggle.active::after { transform: rotate(-45deg); }
 
     .hero {
       min-height: 100vh;
@@ -162,8 +315,16 @@
 
     .hero-inner {
       width: 100%;
-      padding-top: 80px;
-      padding-bottom: 70px;
+      padding-top: 112px;
+      padding-bottom: 78px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+      gap: 38px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 720px;
     }
 
     .hero-topline {
@@ -177,7 +338,7 @@
       background: rgba(255,255,255,0.02);
       margin-bottom: 28px;
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(18px);
       animation: riseIn 0.9s ease forwards 0.2s;
     }
 
@@ -191,10 +352,10 @@
     }
 
     .hero h1 {
-      font-size: clamp(3.4rem, 10vw, 8rem);
-      line-height: 0.92;
-      letter-spacing: -0.06em;
-      max-width: 8ch;
+      font-size: clamp(3.4rem, 10vw, 7rem);
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+      max-width: 9ch;
       opacity: 0;
       transform: translateY(30px);
       animation: riseIn 1s ease forwards 0.35s;
@@ -202,12 +363,12 @@
 
     .hero-sub {
       margin-top: 24px;
-      max-width: 620px;
+      max-width: 610px;
       color: var(--muted);
-      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-size: clamp(1rem, 2vw, 1.12rem);
       opacity: 0;
       transform: translateY(24px);
-      animation: riseIn 1s ease forwards 0.55s;
+      animation: riseIn 1s ease forwards 0.52s;
     }
 
     .hero-actions {
@@ -217,50 +378,20 @@
       flex-wrap: wrap;
       opacity: 0;
       transform: translateY(24px);
-      animation: riseIn 1s ease forwards 0.72s;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 22px;
-      border-radius: 999px;
-      transition: transform 0.28s ease, background 0.28s ease, color 0.28s ease, border-color 0.28s ease;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: var(--white);
-      color: #000;
-    }
-
-    .btn-secondary {
-      border: 1px solid rgba(255,255,255,0.14);
-      color: var(--white);
-      background: rgba(255,255,255,0.02);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.08);
+      animation: riseIn 1s ease forwards 0.68s;
     }
 
     .hero-minimal-card {
-      margin-top: 60px;
-      width: min(440px, 100%);
+      margin-top: 54px;
+      width: min(420px, 100%);
       padding: 18px 20px;
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 22px;
       background: rgba(255,255,255,0.025);
       box-shadow: var(--shadow);
       opacity: 0;
-      transform: translateY(25px);
-      animation: riseIn 1s ease forwards 0.9s;
+      transform: translateY(24px);
+      animation: riseIn 1s ease forwards 0.84s;
     }
 
     .hero-minimal-card small {
@@ -277,6 +408,85 @@
       font-size: 0.96rem;
     }
 
+    .hero-visual {
+      position: relative;
+      min-height: 540px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)),
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.05), transparent 30%),
+        linear-gradient(145deg, #0c0c0c, #070707);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: riseIn 1s ease forwards 0.8s;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 75% 18%, rgba(255,255,255,0.06), transparent 22%),
+        linear-gradient(to top, rgba(0,0,0,0.5), rgba(0,0,0,0.08));
+      pointer-events: none;
+    }
+
+    .hero-frame {
+      position: absolute;
+      inset: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.028), rgba(255,255,255,0.01));
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .frame-top,
+    .frame-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted-2);
+      font-size: 0.77rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .frame-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .frame-dots span {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .hero-visual-copy {
+      margin-top: auto;
+      max-width: 290px;
+    }
+
+    .hero-visual-copy h3 {
+      font-size: 1.25rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .hero-visual-copy p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
     .scroll-indicator {
       position: absolute;
       left: 50%;
@@ -287,7 +497,7 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       opacity: 0;
-      animation: fadeIn 1s ease forwards 1.25s;
+      animation: fadeIn 1s ease forwards 1.1s;
     }
 
     .scroll-indicator::after {
@@ -301,13 +511,13 @@
     }
 
     section {
-      padding: 110px 0;
+      padding: 108px 0;
       position: relative;
       z-index: 2;
     }
 
     .section-intro {
-      margin-bottom: 30px;
+      margin-bottom: 32px;
     }
 
     .kicker {
@@ -323,6 +533,7 @@
       line-height: 0.96;
       letter-spacing: -0.05em;
       margin-bottom: 14px;
+      max-width: 12ch;
     }
 
     .section-intro p {
@@ -335,7 +546,6 @@
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 18px;
-      align-items: stretch;
     }
 
     .panel {
@@ -357,7 +567,8 @@
     .mission-side h3,
     .work-card h3,
     .service-card h3,
-    .contact-box h3 {
+    .contact-box h3,
+    .about-image-card h3 {
       font-size: 1.3rem;
       letter-spacing: -0.03em;
       margin-bottom: 14px;
@@ -367,7 +578,8 @@
     .mission-side p,
     .service-card p,
     .work-card p,
-    .contact-box p {
+    .contact-box p,
+    .about-image-card p {
       color: var(--muted);
     }
 
@@ -396,20 +608,51 @@
     }
 
     .services-grid,
-    .work-grid {
+    .work-grid,
+    .about-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
+    .about-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      margin-top: 18px;
+    }
+
+    .about-image-card {
+      overflow: hidden;
+      min-height: 460px;
+      position: relative;
+      padding: 0;
+      display: flex;
+      align-items: flex-end;
+      background:
+        linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.12)),
+        url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .about-image-card .about-overlay {
+      width: 100%;
+      padding: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
     .service-card,
     .work-card {
-      min-height: 280px;
+      min-height: 290px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+    }
+
+    .service-card:hover,
+    .work-card:hover {
+      transform: translateY(-6px) scale(1.01);
     }
 
     .service-card::before,
@@ -417,8 +660,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 30%);
+      background: radial-gradient(circle at top right, rgba(255,255,255,0.08), transparent 30%);
       pointer-events: none;
     }
 
@@ -426,9 +668,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
       color: var(--muted-2);
       font-size: 0.83rem;
-      margin-bottom: 40px;
+      margin-bottom: 42px;
+      position: relative;
+      z-index: 1;
     }
 
     .service-card strong,
@@ -438,15 +683,30 @@
       font-weight: 500;
     }
 
+    .service-card > div:last-child,
+    .work-card > div:last-child {
+      position: relative;
+      z-index: 1;
+    }
+
     .work-card {
-      min-height: 360px;
-      background:
-        linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0.16)),
-        linear-gradient(140deg, #131313, #090909);
+      min-height: 380px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      isolation: isolate;
+    }
+
+    .work-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15));
+      z-index: 0;
     }
 
     .work-card p {
-      max-width: 30ch;
+      max-width: 31ch;
     }
 
     .approach-grid {
@@ -505,11 +765,7 @@
       font-size: clamp(1.25rem, 3vw, 2.15rem);
       line-height: 1.15;
       letter-spacing: -0.04em;
-      max-width: 900px;
-    }
-
-    .statement-box p span {
-      color: var(--white);
+      max-width: 920px;
     }
 
     .contact-box {
@@ -544,9 +800,7 @@
     .reveal {
       opacity: 0;
       transform: translateY(36px) scale(0.985);
-      transition:
-        opacity 0.9s cubic-bezier(.2,.65,.2,1),
-        transform 0.9s cubic-bezier(.2,.65,.2,1);
+      transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
       will-change: opacity, transform;
     }
 
@@ -558,17 +812,13 @@
     .stagger > * {
       opacity: 0;
       transform: translateY(26px);
-      transition:
-        opacity 0.8s cubic-bezier(.2,.65,.2,1),
-        transform 0.8s cubic-bezier(.2,.65,.2,1);
+      transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
     }
 
     .stagger.visible > *:nth-child(1) { transition-delay: 0.05s; }
     .stagger.visible > *:nth-child(2) { transition-delay: 0.12s; }
     .stagger.visible > *:nth-child(3) { transition-delay: 0.19s; }
     .stagger.visible > *:nth-child(4) { transition-delay: 0.26s; }
-    .stagger.visible > *:nth-child(5) { transition-delay: 0.33s; }
-    .stagger.visible > *:nth-child(6) { transition-delay: 0.40s; }
 
     .stagger.visible > * {
       opacity: 1;
@@ -589,9 +839,7 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
 
     @keyframes pulse {
@@ -604,18 +852,34 @@
       50% { transform: translateY(8px); opacity: 0.35; }
     }
 
-    @media (max-width: 1050px) {
+    @keyframes gateRise {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .hero-inner,
       .mission-wrap,
-      .services-grid,
-      .work-grid,
+      .about-grid,
       .approach-grid,
       .contact-box {
         grid-template-columns: 1fr;
         display: grid;
       }
 
-      .contact-box {
-        align-items: start;
+      .services-grid,
+      .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-visual {
+        min-height: 420px;
       }
     }
 
@@ -624,31 +888,66 @@
         width: min(100% - 24px, 1180px);
       }
 
+      .mobile-toggle {
+        display: inline-flex;
+      }
+
       .nav-inner {
         min-height: auto;
         padding: 16px 0;
-        flex-wrap: wrap;
       }
 
       .nav-links {
-        width: 100%;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-        font-size: 0.9rem;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 12px;
+        right: 12px;
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 22px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(6,6,6,0.95);
+        backdrop-filter: blur(14px);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.28s ease, transform 0.28s ease;
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-links a {
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: rgba(255,255,255,0.02);
       }
 
       .hero-inner {
-        padding-top: 110px;
-        padding-bottom: 50px;
+        padding-top: 108px;
+        padding-bottom: 52px;
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .hero h1 {
+        max-width: 10ch;
       }
 
       .hero-minimal-card {
         margin-top: 38px;
       }
 
+      .hero-visual {
+        min-height: 300px;
+      }
+
       section {
-        padding: 80px 0;
+        padding: 82px 0;
       }
 
       .services-grid,
@@ -657,9 +956,10 @@
         grid-template-columns: 1fr;
       }
 
-      .statement-box,
       .panel,
-      .contact-box {
+      .statement-box,
+      .contact-box,
+      .gate-card {
         padding: 22px;
       }
 
@@ -669,19 +969,12 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
         animation: none !important;
         transition: none !important;
       }
-
-      .reveal,
-      .stagger > * {
+      .reveal, .stagger > *, .site-shell {
         opacity: 1 !important;
         transform: none !important;
       }
@@ -692,280 +985,341 @@
   <div class="page-bg"></div>
   <div class="noise"></div>
 
-  <nav class="nav" id="nav">
-    <div class="container nav-inner">
-      <a href="#" class="logo">RIVRANT</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#contact" class="nav-cta">Start a Project</a>
-      </div>
+  <div class="gate" id="gate" aria-hidden="false">
+    <div class="gate-card">
+      <div class="gate-logo">RIVRANT</div>
+      <div class="gate-sub">Brand & Production</div>
+      <button class="gate-btn" id="enterButton">Enter</button>
     </div>
-  </nav>
+  </div>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-topline">
-          <span class="hero-dot"></span>
-          <span>Brand & Production</span>
-        </div>
+  <div class="site-shell">
+    <nav class="nav" id="nav">
+      <div class="container nav-inner">
+        <a href="#" class="logo">RIVRANT</a>
 
-        <h1 class="parallax">Minimal first. Then everything lands.</h1>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+        </button>
 
-        <p class="hero-sub">
-          Rivrant is a creative production platform focused on storytelling, culture, and community. 
-          We produce films, documentaries, and short-term content that reflect both REAL people and emotion. 
-        </p>
-
-        <div class="hero-actions">
-          <a href="#work" class="btn btn-primary">View Work</a>
-          <a href="#about" class="btn btn-secondary">Explore</a>
-        </div>
-
-        <div class="hero-minimal-card">
-          <small>Positioning</small>
-          <p>
-            A production platform tasked with cultural documentation and storytelling.
-          </p>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#work">Work</a>
+          <a href="#contact" class="nav-cta">Start a Project</a>
         </div>
       </div>
+    </nav>
 
-      <div class="scroll-indicator">Scroll</div>
-    </section>
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <div class="hero-topline">
+              <span class="hero-dot"></span>
+              <span>Brand & Production</span>
+            </div>
 
-    <section id="about" class="reveal">
-      <div class="container">
-        <div class="section-intro">
-          <div class="kicker">Overview</div>
-          <h2>Built for brands, artists, and stories that need more than content.</h2>
-          <p>
-            RIVRANT creates visual identities,films and digital experiences 
-            that feel intentional, cinematic, and culturally aware.
-          </p>
-        </div>
+            <h1 class="parallax">Stories built to feel bigger than content.</h1>
 
-        <div class="mission-wrap">
-          <div class="panel mission-main reveal">
-            <h3>Mission</h3>
-            <p>
-              We build brands and visuals with emotion, clarity, and direction.
+            <p class="hero-sub">
+              RIVRANT is a creative production platform focused on storytelling, culture, and community.
+              We create brand direction, films, documentaries, and short-form content rooted in real people,
+              real emotion, and stronger visual presence.
             </p>
 
-            <ul class="mission-points">
-              <li>Identity rooted in story</li>
-              <li>Creative production with real intent</li>
-              <li>Digital experiences that feel modern and distinct</li>
-            </ul>
+            <div class="hero-actions">
+              <a href="#work" class="btn btn-primary">View Work</a>
+              <a href="#about" class="btn btn-secondary">Explore</a>
+            </div>
+
+            <div class="hero-minimal-card">
+              <small>Positioning</small>
+              <p>
+                A creative production platform for brands, artists, and stories that need more than content.
+              </p>
+            </div>
           </div>
 
-          <div class="panel mission-side reveal">
-            <h3>Core Audience</h3>
+          <div class="hero-visual">
+            <div class="hero-frame">
+              <div class="frame-top">
+                <div class="frame-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div>Visual Direction</div>
+              </div>
+
+              <div class="hero-visual-copy">
+                <h3>Built like a studio, not a template.</h3>
+                <p>
+                  Clean structure, cinematic pacing, and a digital presence that lands with clarity.
+                </p>
+              </div>
+
+              <div class="frame-bottom">
+                <div>Story / Culture / Motion</div>
+                <div>RIVRANT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-indicator">Scroll</div>
+      </section>
+
+      <section id="about" class="reveal">
+        <div class="container">
+          <div class="section-intro">
+            <div class="kicker">Overview</div>
+            <h2>Built for brands, artists, and stories that need presence.</h2>
             <p>
-              Creative Businesses, personal brands, artists, and emerging companies
-              that care as much about feeling as they do about visuals.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="reveal">
-      <div class="container">
-        <div class="section-intro">
-          <div class="kicker">Services</div>
-          <h2>What RIVRANT does.</h2>
-          <p>
-            We produce films, documentaries, and short-term content 
-            that reflect real people and real emotion. 
-          </p>
-        </div>
-
-        <div class="services-grid stagger reveal">
-          <div class="panel service-card">
-            <div class="card-top">
-              <strong>01</strong>
-              <span>Brand Direction</span>
-            </div>
-            <div>
-              <h3>Positioning & Identity</h3>
-              <p>
-                Sharper messaging, stronger creative direction, and a visual
-                identity that feels intentional from the first second.
-              </p>
-            </div>
-          </div>
-
-          <div class="panel service-card">
-            <div class="card-top">
-              <strong>02</strong>
-              <span>Digital</span>
-            </div>
-            <div>
-              <h3>Responsive Websites</h3>
-              <p>
-                Clean desktop and mobile experiences with motion that feels real,
-                smooth, and modern instead of gimmicky.
-              </p>
-            </div>
-          </div>
-
-          <div class="panel service-card">
-            <div class="card-top">
-              <strong>03</strong>
-              <span>Production</span>
-            </div>
-            <div>
-              <h3>Content & Campaign Assets</h3>
-              <p>
-                Documentary-style visuals, launch assets, editorial material,
-                and branded content that actually carries a mood.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="work" class="reveal">
-      <div class="container">
-        <div class="section-intro">
-          <div class="kicker">Selected Work</div>
-          <h2>Built to look like a studio, not a template.</h2>
-          <p>
-            These are placeholders for now, but the layout already gives you the
-            right tone. Later you can swap in real projects, stills, or case studies.
-          </p>
-        </div>
-
-        <div class="work-grid stagger reveal">
-          <div class="panel work-card">
-            <div class="card-top">
-              <strong>Case 01</strong>
-              <span>Creative Direction</span>
-            </div>
-            <div>
-              <h3>Luxury service launch</h3>
-              <p>
-                Identity, positioning, and a stronger digital presence designed
-                to shift perception instantly.
-              </p>
-            </div>
-          </div>
-
-          <div class="panel work-card">
-            <div class="card-top">
-              <strong>Case 02</strong>
-              <span>Storytelling</span>
-            </div>
-            <div>
-              <h3>Culture-led documentary concept</h3>
-              <p>
-                A cleaner presentation for projects built around real people,
-                real emotion, and visual credibility.
-              </p>
-            </div>
-          </div>
-
-          <div class="panel work-card">
-            <div class="card-top">
-              <strong>Case 03</strong>
-              <span>Digital Presence</span>
-            </div>
-            <div>
-              <h3>Modern portfolio system</h3>
-              <p>
-                Minimal front-end presentation with layered motion and strong
-                hierarchy across desktop and mobile.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="reveal">
-      <div class="container">
-        <div class="section-intro">
-          <div class="kicker">Approach</div>
-          <h2>How the work moves.</h2>
-          <p>
-            The process stays simple on purpose. No messy overexplaining. Just
-            clean creative structure from start to finish.
-          </p>
-        </div>
-
-        <div class="approach-grid stagger reveal">
-          <div class="approach-step">
-            <span>Step 01</span>
-            <h3>Discover</h3>
-            <p>Figure out what the brand should feel like before touching design.</p>
-          </div>
-
-          <div class="approach-step">
-            <span>Step 02</span>
-            <h3>Design</h3>
-            <p>Shape the site, the visual language, and the overall perception.</p>
-          </div>
-
-          <div class="approach-step">
-            <span>Step 03</span>
-            <h3>Refine</h3>
-            <p>Tighten spacing, pacing, type, and motion until it feels expensive.</p>
-          </div>
-
-          <div class="approach-step">
-            <span>Step 04</span>
-            <h3>Launch</h3>
-            <p>Roll it out as a complete presence, not a disconnected set of pieces.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="statement reveal">
-      <div class="container">
-        <div class="statement-box">
-          <p>
-            “A strong brand doesn’t need to scream. It just needs to land with
-            enough clarity that people immediately feel the difference.”
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="reveal">
-      <div class="container">
-        <div class="panel contact-box">
-          <div>
-            <h3>Start something clean.</h3>
-            <p>
-              Replace these with your real email, Instagram, or booking link when
-              you’re ready to make this live for actual leads.
+              RIVRANT creates visual identities, films, and digital experiences
+              that feel intentional, cinematic, and culturally aware.
             </p>
           </div>
 
-          <div class="contact-actions">
-            <a href="mailto:your@email.com" class="btn btn-primary">Email</a>
-            <a href="#" class="btn btn-secondary">Instagram</a>
+          <div class="mission-wrap">
+            <div class="panel mission-main reveal">
+              <h3>Mission</h3>
+              <p>
+                We build brands and visuals with emotion, clarity, and direction.
+              </p>
+
+              <ul class="mission-points">
+                <li>Identity rooted in story</li>
+                <li>Creative production with real intent</li>
+                <li>Digital experiences that feel modern and distinct</li>
+              </ul>
+            </div>
+
+            <div class="panel mission-side reveal">
+              <h3>Core Audience</h3>
+              <p>
+                Creative businesses, personal brands, artists, and emerging companies
+                that care as much about feeling as they do about visuals.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-grid reveal">
+            <div class="panel about-image-card">
+              <div class="about-overlay">
+                <h3>Direction with atmosphere.</h3>
+                <p>
+                  The visual language should feel intentional before anyone reads a single word.
+                </p>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h3>What that means</h3>
+              <p>
+                The goal is not just clean design. It is perception. The right pacing, the right stills,
+                the right motion, and the right level of restraint so the whole brand feels more expensive.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer>
-    <div class="container footer-inner">
-      <div>© 2026 RIVRANT</div>
-      <div>Brand & Production</div>
-    </div>
-  </footer>
+      <section id="services" class="reveal">
+        <div class="container">
+          <div class="section-intro">
+            <div class="kicker">Services</div>
+            <h2>What RIVRANT does.</h2>
+            <p>
+              Brand direction, digital presence, and production work built to feel cohesive from the start.
+            </p>
+          </div>
+
+          <div class="services-grid stagger reveal">
+            <div class="panel service-card">
+              <div class="card-top">
+                <strong>01</strong>
+                <span>Brand Direction</span>
+              </div>
+              <div>
+                <h3>Positioning & Identity</h3>
+                <p>
+                  Sharper messaging, stronger visual direction, and an identity
+                  that feels intentional from the first second.
+                </p>
+              </div>
+            </div>
+
+            <div class="panel service-card">
+              <div class="card-top">
+                <strong>02</strong>
+                <span>Digital</span>
+              </div>
+              <div>
+                <h3>Responsive Websites</h3>
+                <p>
+                  Clean desktop and mobile experiences with motion that feels smooth,
+                  grounded, and premium instead of gimmicky.
+                </p>
+              </div>
+            </div>
+
+            <div class="panel service-card">
+              <div class="card-top">
+                <strong>03</strong>
+                <span>Production</span>
+              </div>
+              <div>
+                <h3>Content & Campaign Assets</h3>
+                <p>
+                  Documentary-style visuals, launch assets, editorial material,
+                  and branded content that actually carries a mood.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="reveal">
+        <div class="container">
+          <div class="section-intro">
+            <div class="kicker">Selected Work</div>
+            <h2>Built to look like a studio, not a template.</h2>
+            <p>
+              Swap these with your real projects later. The structure is already set up to feel more cinematic.
+            </p>
+          </div>
+
+          <div class="work-grid stagger reveal">
+            <div class="panel work-card" style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80');">
+              <div class="card-top">
+                <strong>Case 01</strong>
+                <span>Creative Direction</span>
+              </div>
+              <div>
+                <h3>Luxury service launch</h3>
+                <p>
+                  Identity, positioning, and a stronger digital presence designed
+                  to shift perception instantly.
+                </p>
+              </div>
+            </div>
+
+            <div class="panel work-card" style="background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80');">
+              <div class="card-top">
+                <strong>Case 02</strong>
+                <span>Storytelling</span>
+              </div>
+              <div>
+                <h3>Culture-led documentary concept</h3>
+                <p>
+                  A cleaner presentation for projects built around real people,
+                  real emotion, and visual credibility.
+                </p>
+              </div>
+            </div>
+
+            <div class="panel work-card" style="background-image: url('https://images.unsplash.com/photo-1493246318656-5bfd4cfb29b8?auto=format&fit=crop&w=1200&q=80');">
+              <div class="card-top">
+                <strong>Case 03</strong>
+                <span>Digital Presence</span>
+              </div>
+              <div>
+                <h3>Modern portfolio system</h3>
+                <p>
+                  Minimal front-end presentation with layered motion and strong
+                  hierarchy across desktop and mobile.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="container">
+          <div class="section-intro">
+            <div class="kicker">Approach</div>
+            <h2>How the work moves.</h2>
+            <p>
+              The process stays simple on purpose. Clean creative structure from start to finish.
+            </p>
+          </div>
+
+          <div class="approach-grid stagger reveal">
+            <div class="approach-step">
+              <span>Step 01</span>
+              <h3>Discover</h3>
+              <p>Figure out what the brand should feel like before touching design.</p>
+            </div>
+
+            <div class="approach-step">
+              <span>Step 02</span>
+              <h3>Design</h3>
+              <p>Shape the site, the visual language, and the overall perception.</p>
+            </div>
+
+            <div class="approach-step">
+              <span>Step 03</span>
+              <h3>Refine</h3>
+              <p>Tighten spacing, pacing, type, and motion until it feels expensive.</p>
+            </div>
+
+            <div class="approach-step">
+              <span>Step 04</span>
+              <h3>Launch</h3>
+              <p>Roll it out as a complete presence, not a disconnected set of pieces.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="statement reveal">
+        <div class="container">
+          <div class="statement-box">
+            <p>
+              “A strong brand does not need to scream. It just needs to land with enough clarity
+              that people immediately feel the difference.”
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <div class="container">
+          <div class="panel contact-box">
+            <div>
+              <h3>Start something clean.</h3>
+              <p>
+                Let’s build something intentional, cinematic, and built to last.
+                Reach out for brand direction, digital presence, or production work.
+              </p>
+            </div>
+
+            <div class="contact-actions">
+              <a href="mailto:your@email.com" class="btn btn-primary">Email</a>
+              <a href="#" class="btn btn-secondary">Instagram</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <div>© 2026 RIVRANT</div>
+        <div>Brand & Production</div>
+      </div>
+    </footer>
+  </div>
 
   <script>
     const nav = document.getElementById("nav");
     const revealEls = document.querySelectorAll(".reveal");
     const parallaxEls = document.querySelectorAll(".parallax");
+    const gate = document.getElementById("gate");
+    const enterButton = document.getElementById("enterButton");
+    const mobileToggle = document.getElementById("mobileToggle");
+    const navLinks = document.getElementById("navLinks");
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -973,9 +1327,7 @@
           entry.target.classList.add("visible");
         }
       });
-    }, {
-      threshold: 0.12
-    });
+    }, { threshold: 0.12 });
 
     revealEls.forEach((el) => observer.observe(el));
 
@@ -993,6 +1345,36 @@
         el.style.setProperty("--parallax", `${y * speed}px`);
       });
     }
+
+    function openSite() {
+      gate.classList.add("hidden");
+      document.body.classList.add("site-ready");
+    }
+
+    enterButton.addEventListener("click", openSite);
+
+    document.addEventListener("keydown", (e) => {
+      if (!gate.classList.contains("hidden") && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        openSite();
+      }
+    });
+
+    mobileToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      mobileToggle.classList.toggle("active", isOpen);
+      mobileToggle.setAttribute("aria-expanded", String(isOpen));
+      document.body.classList.toggle("menu-open", isOpen);
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        mobileToggle.classList.remove("active");
+        mobileToggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
+      });
+    });
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
