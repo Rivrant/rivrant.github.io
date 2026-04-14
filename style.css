@@ -1,1 +1,64 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #050505;
+  color: white;
+}
 
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav a {
+  margin-left: 20px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* INTRO */
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.intro-container {
+  text-align: center;
+}
+
+.intro h1 {
+  font-size: 4rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: white;
+  color: black;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+/* HERO */
+.hero {
+  padding: 100px 40px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+/* PAGE */
+.page {
+  padding: 100px 40px;
+}
