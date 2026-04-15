@@ -1,34 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <title>Doc - RIVRANT</title>
-  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIVRANT — Doc</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="page-bg"></div>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="logo">RIVRANT</div>
-    <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="video.html">Video</a>
-      <a href="doc.html">Doc</a>
-      <a href="photo.html">Photo</a>
-      <a href="events.html">Events</a>
-      <a href="contactus.html">Contact us</a>
+  <div class="page-bg"></div>
+  <div class="noise"></div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="home.html">RIVRANT</a>
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="video.html">Video</a>
+        <a class="active" href="doc.html">Doc</a>
+        <a href="photo.html">Photo</a>
+        <a href="events.html">Events</a>
+        <a href="contactus.html">Contact</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<section class="page">
-  <h1>Doc</h1>
-  <p>Documentary style work.</p>
-</section>
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <span class="eyebrow">Doc</span>
+          <h1>Documentary work that keeps texture, detail, and intimacy.</h1>
+          <p>This section is positioned for looser, observational work — the kind of imagery that feels lived in, atmospheric, and honest while still staying visually controlled.</p>
+        </div>
+        <div class="page-hero-media">
+          <img class="cover" src="nature2.PNG" alt="Documentary landscape mood">
+        </div>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="container feature-grid">
+        <article class="feature-card">
+          <img class="cover" src="nature1.JPG" alt="Outdoor documentary frame">
+          <div class="card-overlay"><h3>Real environments</h3><p>Available light, honest framing, and emotional distance that still feels close.</p></div>
+        </article>
+        <article class="feature-card copy">
+          <div>
+            <span class="eyebrow">Approach</span>
+            <h2 class="section-title">Less staged. Still intentional.</h2>
+          </div>
+          <ul>
+            <li>Location-based imagery with space for movement and imperfection.</li>
+            <li>Close details, quiet atmosphere, and tension between subject and setting.</li>
+            <li>Strong fit for mini-doc edits, artist profiles, and story-driven campaigns.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container gallery-grid">
+        <article class="gallery-item"><img class="cover" src="studio2.JPEG" alt="Studio documentary detail"><div class="gallery-caption">Behind-the-scenes perspective</div></article>
+        <article class="gallery-item"><img class="cover" src="studio3.JPEG" alt="Studio atmosphere"><div class="gallery-caption">Process and atmosphere</div></article>
+        <article class="gallery-item"><img class="cover" src="red1.JPG" alt="Moody red scene"><div class="gallery-caption">Mood-driven portraiture</div></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><div>RIVRANT Doc</div><div>Observational / Story-led / Atmosphere</div></div></footer>
 </body>
 </html>

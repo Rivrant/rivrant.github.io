@@ -1,34 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <title>Photo - RIVRANT</title>
-  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIVRANT — Photo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="page-bg"></div>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="logo">RIVRANT</div>
-    <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="video.html">Video</a>
-      <a href="doc.html">Doc</a>
-      <a href="photo.html">Photo</a>
-      <a href="events.html">Events</a>
-      <a href="contactus.html">Contact us</a>
+  <div class="page-bg"></div>
+  <div class="noise"></div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="home.html">RIVRANT</a>
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="video.html">Video</a>
+        <a href="doc.html">Doc</a>
+        <a class="active" href="photo.html">Photo</a>
+        <a href="events.html">Events</a>
+        <a href="contactus.html">Contact</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<section class="page">
-  <h1>Photo</h1>
-  <p>Your visual work goes here.</p>
-</section>
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <span class="eyebrow">Photo</span>
+          <h1>Portraits, styling, and image systems with presence.</h1>
+          <p>This page now uses your repo assets directly and feels like a curated gallery instead of a placeholder. The mix below leans editorial, fashion, and street-luxury.</p>
+        </div>
+        <div class="page-hero-media">
+          <img class="cover" src="blazer.JPG" alt="Portrait in blazer">
+        </div>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="container gallery-grid">
+        <article class="gallery-item"><img class="cover" src="blazer.JPG" alt="Blazer portrait"><div class="gallery-caption">Structured styling</div></article>
+        <article class="gallery-item"><img class="cover" src="chrome.JPG" alt="Chrome portrait"><div class="gallery-caption">High-shine portrait</div></article>
+        <article class="gallery-item"><img class="cover" src="fit1.JPG" alt="Outfit portrait"><div class="gallery-caption">Lookbook energy</div></article>
+        <article class="gallery-item"><img class="cover" src="fit2.JPG" alt="Fashion portrait"><div class="gallery-caption">Street editorial</div></article>
+        <article class="gallery-item"><img class="cover" src="hat.JPG" alt="Hat portrait"><div class="gallery-caption">Character styling</div></article>
+        <article class="gallery-item"><img class="cover" src="red2.JPG" alt="Red portrait"><div class="gallery-caption">Color-led mood</div></article>
+        <article class="gallery-item"><img class="cover" src="rings1.JPG" alt="Jewelry detail"><div class="gallery-caption">Detail framing</div></article>
+        <article class="gallery-item"><img class="cover" src="rings3.JPG" alt="Jewelry detail close-up"><div class="gallery-caption">Product-adjacent close-ups</div></article>
+        <article class="gallery-item"><img class="cover" src="styling.JPEG" alt="Styled portrait"><div class="gallery-caption">Finished campaign feel</div></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><div>RIVRANT Photo</div><div>Editorial / Portrait / Styling</div></div></footer>
 </body>
 </html>

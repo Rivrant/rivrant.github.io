@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <title>Contact us </title>
-  <link rel="stylesheet" href="/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIVRANT — Contact</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="page-bg"></div>
-
-<nav class="nav">
-  <div class="nav-inner">
-    <div class="logo">RIVRANT</div>
-    <div class="nav-links">
-      <a href="home.html">Home</a>
-      <a href="video.html">Video</a>
-      <a href="doc.html">Doc</a>
-      <a href="photo.html">Photo</a>
-      <a href="events.html">Events</a>
-      <a href="contactus.html">Contact us</a>
+  <div class="page-bg"></div>
+  <div class="noise"></div>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="logo" href="home.html">RIVRANT</a>
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <a href="video.html">Video</a>
+        <a href="doc.html">Doc</a>
+        <a href="photo.html">Photo</a>
+        <a href="events.html">Events</a>
+        <a class="active" href="contactus.html">Contact</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<section class="page">
-  <h1>Photo</h1>
-  <p>Contacts here</p>
-</section>
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="page-hero-copy">
+          <span class="eyebrow">Contact</span>
+          <h1>Reach out for bookings, concepts, and collaborations.</h1>
+          <p>I kept this page useful without forcing fake details into it. You can replace the placeholders below with your real email, Instagram, and booking flow in under a minute.</p>
+        </div>
+        <div class="page-hero-media">
+          <img class="cover" src="fit1.JPG" alt="Contact page portrait">
+        </div>
+      </div>
+    </section>
 
+    <section class="section">
+      <div class="container contact-grid">
+        <article class="contact-card">
+          <h3>Use this section for your real details</h3>
+          <ul>
+            <li>Email: yourname@example.com</li>
+            <li>Instagram: @rivrant</li>
+            <li>Base: Toronto / available for select travel</li>
+            <li>Typical asks: campaigns, portraits, event coverage, social visuals</li>
+          </ul>
+        </article>
+        <article class="contact-card">
+          <h3>Inquiry form layout</h3>
+          <form>
+            <input type="text" placeholder="Your name">
+            <input type="email" placeholder="Email address">
+            <input type="text" placeholder="Project type">
+            <textarea placeholder="Tell me about the shoot, timeline, and deliverables"></textarea>
+            <button class="btn" type="button">Send inquiry</button>
+          </form>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="footer-inner"><div>RIVRANT Contact</div><div>Bookings / Collaborations / Creative work</div></div></footer>
 </body>
 </html>
