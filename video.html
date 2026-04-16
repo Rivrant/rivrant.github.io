@@ -28,40 +28,81 @@
       <div class="container page-hero-grid">
         <div class="page-hero-copy">
           <span class="eyebrow">Video</span>
-          <h1>Ready for reels, spec work, and future motion embeds.</h1>
-          <p>You said to use the assets in the repo, and there are no actual video files in this upload, so I turned this into a strong motion-services page you can later plug Vimeo, YouTube, or MP4 embeds into without redesigning the whole site.</p>
+          <h1>Motion work now lives inside the site instead of sitting off to the side.</h1>
+          <p>Video 1 and Rift are now treated as the main projects here. Video 1 works as the pronunciation piece for the brand name, while Rift sits beside it as the second lead feature.</p>
         </div>
         <div class="page-hero-media">
-          <img class="cover" src="red2.JPG" alt="Video page visual placeholder">
+          <video class="cover" controls playsinline preload="metadata" poster="andy-1.jpg">
+            <source src="video-1.mp4" type="video/mp4">
+          </video>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container services-grid">
-        <article class="service-card"><h3>Creative concepts</h3><p>Treatment-driven visuals for artists, brands, editorials, and social campaigns.</p></article>
-        <article class="service-card"><h3>Short-form edits</h3><p>Reels, teasers, and recap pieces designed to carry the same image language as the stills.</p></article>
-        <article class="service-card"><h3>Future-proof layout</h3><p>Drop in embedded players or poster frames later without breaking mobile performance.</p></article>
+      <div class="container">
+        <span class="eyebrow">Main projects</span>
+        <h2 class="section-title">The lead pieces get the space they need.</h2>
+        <div class="video-grid featured-videos">
+          <article class="video-card large">
+            <div class="video-frame square-frame">
+              <video class="cover" controls playsinline preload="metadata" poster="andy-1.jpg">
+                <source src="video-1.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="video-meta">
+              <span class="video-tag">Main project</span>
+              <h3>Video 1 — RIVRANT pronunciation</h3>
+              <p>A direct introduction to the brand name that feels deliberate and polished instead of disposable.</p>
+            </div>
+          </article>
+          <article class="video-card large">
+            <div class="video-frame square-frame">
+              <video class="cover" controls playsinline preload="metadata" poster="chrome.JPG">
+                <source src="rift-1.mp4" type="video/mp4">
+                <source src="rift-1.MOV" type="video/quicktime">
+              </video>
+            </div>
+            <div class="video-meta">
+              <span class="video-tag">Main project</span>
+              <h3>Rift</h3>
+              <p>A tighter featured cut that now reads like a hero project instead of an extra file in the repo.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="container feature-grid">
-        <article class="feature-card copy">
-          <div>
-            <span class="eyebrow">Next step</span>
-            <h2 class="section-title">When you have clips, swap these blocks for embeds.</h2>
-          </div>
-          <ul>
-            <li>Add a Vimeo or YouTube iframe inside these cards.</li>
-            <li>Use poster images from your shoots until final edits are ready.</li>
-            <li>Keep everything compressed so GitHub Pages stays fast.</li>
-          </ul>
-        </article>
-        <article class="feature-card">
-          <img class="cover" src="chrome.JPG" alt="Motion direction moodboard image">
-          <div class="card-overlay"><h3>Motion-ready visual language</h3><p>The page works now, and it is structured for easy video upgrades later.</p></div>
-        </article>
+      <div class="container">
+        <span class="eyebrow">Additional cuts</span>
+        <h2 class="section-title">Supporting motion pieces.</h2>
+        <div class="video-grid secondary-videos">
+          <article class="video-card">
+            <div class="video-frame square-frame">
+              <video class="cover" controls playsinline preload="metadata" poster="red2.JPG">
+                <source src="video-2.mp4" type="video/mp4">
+                <source src="video-2.MOV" type="video/quicktime">
+              </video>
+            </div>
+            <div class="video-meta compact">
+              <h3>Video 2</h3>
+              <p>A secondary clip that extends the motion section without crowding the main projects.</p>
+            </div>
+          </article>
+          <article class="video-card">
+            <div class="video-frame square-frame">
+              <video class="cover" controls playsinline preload="metadata" poster="studio1.JPEG">
+                <source src="video-3.mp4" type="video/mp4">
+                <source src="video-3.MOV" type="video/quicktime">
+              </video>
+            </div>
+            <div class="video-meta compact">
+              <h3>Video 3</h3>
+              <p>A longer supporting piece that rounds out the page with more than just two embeds.</p>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
   </main>
