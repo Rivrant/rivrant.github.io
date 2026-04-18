@@ -20,16 +20,38 @@
 
   <script>
 const canvas = document.getElementById("particleOrbit");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", { alpha: true });
 
 let particles = [];
 let w = 0;
 let h = 0;
 let dpr = Math.min(window.devicePixelRatio || 1, 2);
+let animationFrame;
+let resizeTimer;
 
-function resize() {
-  w = window.innerWidth;
-  h = window.innerHeight;
+const isMobile = () => window.matchMedia("(max-width: 768px)").matches;
+
+function getViewport() {
+  return {
+    width: Math.max(1, document.documentElement.clientWidth || window.innerWidth),
+    height: Math.max(1, window.innerHeight || document.documentElement.clientHeight)
+  };
+}
+
+function resize(force = false) {
+  const viewport = getViewport();
+  const nextW = Math.round(viewport.width);
+  const nextH = Math.round(viewport.height);
+
+  // Prevent mobile browser-bar dragging from constantly rebuilding the animation.
+  const tinyMobileHeightShift = isMobile() && nextW === w && Math.abs(nextH - h) < 90;
+  if (!force && tinyMobileHeightShift) return;
+
+  const oldW = w || nextW;
+  const oldH = h || nextH;
+
+  w = nextW;
+  h = nextH;
   dpr = Math.min(window.devicePixelRatio || 1, 2);
 
   canvas.width = Math.floor(w * dpr);
@@ -38,57 +60,97 @@ function resize() {
   canvas.style.height = h + "px";
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  init();
+  if (!particles.length || force) {
+    init();
+    return;
+  }
+
+  const scaleX = w / oldW;
+  const scaleY = h / oldH;
+  particles.forEach((particle) => {
+    particle.x = Math.min(w - particle.size, Math.max(particle.size, particle.x * scaleX));
+    particle.y = Math.min(h - particle.size, Math.max(particle.size, particle.y * scaleY));
+  });
 }
 
 class Particle {
   constructor() {
-    const clusterX = w / 2 + (Math.random() - 0.5) * w * 0.58;
-    const clusterY = h / 2 + (Math.random() - 0.5) * h * 0.58;
+    this.size = isMobile() ? 4 + Math.random() * 5.5 : 4.5 + Math.random() * 7.5;
+    this.x = this.size + Math.random() * Math.max(1, w - this.size * 2);
+    this.y = this.size + Math.random() * Math.max(1, h - this.size * 2);
 
-    this.centerX = clusterX;
-    this.centerY = clusterY;
-    this.radiusX = 18 + Math.random() * 70;
-    this.radiusY = 12 + Math.random() * 48;
-    this.angle = Math.random() * Math.PI * 2;
-    this.speed = 0.004 + Math.random() * 0.009;
-    this.size = 3 + Math.random() * 5.5;
-    this.drift = Math.random() * Math.PI * 2;
+    const speed = isMobile() ? 0.45 + Math.random() * 0.75 : 0.55 + Math.random() * 1.05;
+    const angle = Math.random() * Math.PI * 2;
+    this.vx = Math.cos(angle) * speed;
+    this.vy = Math.sin(angle) * speed;
 
-    this.color = [
-      "rgba(255, 255, 255, 0.96)",
-      "rgba(210, 210, 210, 0.9)",
-      "rgba(155, 155, 155, 0.82)",
-      "rgba(95, 95, 95, 0.72)",
-      "rgba(28, 28, 28, 0.68)"
-    ][Math.floor(Math.random() * 5)];
+    this.pulse = Math.random() * Math.PI * 2;
+    this.pulseSpeed = 0.018 + Math.random() * 0.025;
+
+    const palette = [
+      { core: "rgba(255,255,255,0.98)", glow: "rgba(255,255,255,0.42)", line: "rgba(255,255,255," },
+      { core: "rgba(225,225,225,0.96)", glow: "rgba(245,245,245,0.34)", line: "rgba(230,230,230," },
+      { core: "rgba(165,165,165,0.94)", glow: "rgba(210,210,210,0.28)", line: "rgba(205,205,205," },
+      { core: "rgba(82,82,82,0.95)", glow: "rgba(255,255,255,0.20)", line: "rgba(170,170,170," },
+      { core: "rgba(8,8,8,0.98)", glow: "rgba(255,255,255,0.26)", line: "rgba(135,135,135," }
+    ];
+
+    Object.assign(this, palette[Math.floor(Math.random() * palette.length)]);
   }
 
   update() {
-    this.angle += this.speed;
-    this.drift += 0.003;
+    this.x += this.vx;
+    this.y += this.vy;
+    this.pulse += this.pulseSpeed;
 
-    const softDriftX = Math.cos(this.drift) * 10;
-    const softDriftY = Math.sin(this.drift) * 8;
+    if (this.x <= this.size) {
+      this.x = this.size;
+      this.vx *= -1;
+    } else if (this.x >= w - this.size) {
+      this.x = w - this.size;
+      this.vx *= -1;
+    }
 
-    this.x = this.centerX + Math.cos(this.angle) * this.radiusX + softDriftX;
-    this.y = this.centerY + Math.sin(this.angle) * this.radiusY + softDriftY;
+    if (this.y <= this.size) {
+      this.y = this.size;
+      this.vy *= -1;
+    } else if (this.y >= h - this.size) {
+      this.y = h - this.size;
+      this.vy *= -1;
+    }
   }
 
   draw() {
+    const pulseGlow = 1 + Math.sin(this.pulse) * 0.18;
+    const glowRadius = this.size * (7.5 * pulseGlow);
+
+    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, glowRadius);
+    gradient.addColorStop(0, this.glow);
+    gradient.addColorStop(0.18, this.glow);
+    gradient.addColorStop(1, "rgba(255,255,255,0)");
+
+    ctx.save();
+    ctx.globalCompositeOperation = "screen";
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, glowRadius, 0, Math.PI * 2);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+    ctx.restore();
+
+    ctx.save();
+    ctx.shadowBlur = 34;
+    ctx.shadowColor = "rgba(255,255,255,0.72)";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = this.color;
-    ctx.shadowBlur = 30;
-    ctx.shadowColor = this.color;
+    ctx.fillStyle = this.core;
     ctx.fill();
-    ctx.shadowBlur = 0;
+    ctx.restore();
   }
 }
 
 function init() {
   particles = [];
-  const amount = w < 768 ? 85 : 160;
+  const amount = isMobile() ? 62 : 118;
 
   for (let i = 0; i < amount; i++) {
     particles.push(new Particle());
@@ -96,7 +158,7 @@ function init() {
 }
 
 function connectParticles() {
-  const maxDistance = w < 768 ? 145 : 170;
+  const maxDistance = isMobile() ? 128 : 155;
 
   for (let i = 0; i < particles.length; i++) {
     for (let j = i + 1; j < particles.length; j++) {
@@ -105,12 +167,12 @@ function connectParticles() {
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (distance < maxDistance) {
-        const opacity = Math.max(0, 0.16 - distance / 1100);
+        const opacity = Math.max(0, 0.18 - distance / 760);
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
         ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.strokeStyle = "rgba(255,255,255," + opacity + ")";
-        ctx.lineWidth = 0.7;
+        ctx.strokeStyle = particles[i].line + opacity + ")";
+        ctx.lineWidth = 0.75;
         ctx.stroke();
       }
     }
@@ -126,11 +188,20 @@ function animate() {
   });
 
   connectParticles();
-  requestAnimationFrame(animate);
+  animationFrame = requestAnimationFrame(animate);
 }
 
-window.addEventListener("resize", resize);
-resize();
+function queueResize(force = false) {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => resize(force), 120);
+}
+
+// Stop the index screen from rubber-band scrolling/glitching on mobile.
+document.addEventListener("touchmove", (event) => event.preventDefault(), { passive: false });
+window.addEventListener("resize", () => queueResize(false), { passive: true });
+window.addEventListener("orientationchange", () => queueResize(true), { passive: true });
+
+resize(true);
 animate();
 </script>
 </body>
