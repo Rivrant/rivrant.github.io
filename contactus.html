@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RIVRANT — Contact</title>
+  <meta name="description" content="Contact RIVRANT for photo, video, event, documentary, and headshot bookings.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="page-bg"></div>
   <div class="noise"></div>
+
   <nav class="nav">
     <div class="nav-inner">
       <a class="logo" href="home.html">RIVRANT</a>
@@ -29,39 +31,144 @@
         <div class="page-hero-copy">
           <span class="eyebrow">Contact</span>
           <h1>Reach out for bookings, concepts, and collaborations.</h1>
-          <p>I kept this page useful without forcing fake details into it. You can replace the placeholders below with your real email, Instagram, and booking flow in under a minute.</p>
+          <p>Tell us what you are building, what kind of visuals you need, and when you need them. We will help shape the cleanest production path from there.</p>
         </div>
         <div class="page-hero-media">
-          <img class="cover" src="fit1.JPG" alt="Contact page portrait">
+          <img class="cover" src="fit1.JPG" alt="RIVRANT contact portrait">
         </div>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section contact-section">
       <div class="container contact-grid">
-        <article class="contact-card">
-          <h3>Use this section for your real details</h3>
+        <article class="contact-card contact-details-card">
+          <span class="eyebrow">Book RIVRANT</span>
+          <h3>Contact details</h3>
           <ul>
-            <li>Email: yourname@example.com</li>
-            <li>Instagram: @rivrant</li>
+            <li>Email: <a href="mailto:rivrantstudio@gmail.com">rivrantstudio@gmail.com</a></li>
+            <li>Instagram: <a href="https://www.instagram.com/rivrant/" target="_blank" rel="noopener">@rivrant</a></li>
             <li>Base: Toronto / available for select travel</li>
-            <li>Typical asks: campaigns, portraits, event coverage, social visuals</li>
+            <li>Typical work: campaigns, portraits, events, social visuals, and documentary-style pieces</li>
           </ul>
         </article>
+
         <article class="contact-card">
-          <h3>Inquiry form layout</h3>
-          <form>
-            <input type="text" placeholder="Your name">
-            <input type="email" placeholder="Email address">
-            <input type="text" placeholder="Project type">
-            <textarea placeholder="Tell me about the shoot, timeline, and deliverables"></textarea>
-            <button class="btn" type="button">Send inquiry</button>
+          <span class="eyebrow">Inquiry</span>
+          <h3>Start a project</h3>
+          <form id="inquiryForm">
+            <input id="clientName" type="text" placeholder="Your name">
+            <input id="clientEmail" type="email" placeholder="Email address">
+            <input id="projectType" type="text" placeholder="Project type">
+            <textarea id="projectMessage" placeholder="Tell us about the shoot, timeline, location, and deliverables"></textarea>
+            <button class="btn" type="submit">Send inquiry</button>
           </form>
+        </article>
+      </div>
+    </section>
+
+    <section class="section pricing-section">
+      <div class="container pricing-calculator">
+        <div class="pricing-copy">
+          <span class="eyebrow">Estimator</span>
+          <h2 class="section-title">Project pricing calculator.</h2>
+          <p class="section-copy">Use this as a starting point. Final pricing can shift depending on location, crew, editing needs, licensing, and turnaround.</p>
+        </div>
+
+        <article class="contact-card calculator-card">
+          <div class="calculator-row">
+            <label for="calcType">Project type</label>
+            <select id="calcType">
+              <option value="250">Headshots</option>
+              <option value="400">Photo / editorial</option>
+              <option value="550">Event coverage</option>
+              <option value="750">Video / campaign</option>
+              <option value="650">Documentary-style piece</option>
+            </select>
+          </div>
+
+          <div class="calculator-row">
+            <div class="range-label">
+              <label for="calcHours">Shoot hours</label>
+              <strong><span id="hoursValue">3</span> hrs</strong>
+            </div>
+            <input id="calcHours" type="range" min="1" max="12" value="3">
+          </div>
+
+          <div class="calculator-row">
+            <label for="calcDeliverables">Deliverables</label>
+            <select id="calcDeliverables">
+              <option value="0">Essentials package</option>
+              <option value="150">Extra edited selects</option>
+              <option value="300">Social rollout package</option>
+              <option value="500">Full campaign package</option>
+            </select>
+          </div>
+
+          <label class="rush-option">
+            <input id="calcRush" type="checkbox" value="150">
+            Add rush turnaround
+          </label>
+
+          <div class="estimate-box">
+            <span>Estimated starting price</span>
+            <strong id="estimateTotal">$1,200</strong>
+          </div>
         </article>
       </div>
     </section>
   </main>
 
-  <footer class="footer"><div class="footer-inner"><div>RIVRANT Contact</div><div>Bookings / Collaborations / Creative work</div></div></footer>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>RIVRANT Contact</div>
+      <div><a href="mailto:rivrantstudio@gmail.com">rivrantstudio@gmail.com</a> / <a href="https://www.instagram.com/rivrant/" target="_blank" rel="noopener">@rivrant</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const calcType = document.getElementById("calcType");
+    const calcHours = document.getElementById("calcHours");
+    const calcDeliverables = document.getElementById("calcDeliverables");
+    const calcRush = document.getElementById("calcRush");
+    const estimateTotal = document.getElementById("estimateTotal");
+    const hoursValue = document.getElementById("hoursValue");
+
+    function formatMoney(value) {
+      return "$" + value.toLocaleString("en-CA");
+    }
+
+    function updateEstimate() {
+      const baseRate = Number(calcType.value);
+      const hours = Number(calcHours.value);
+      const deliverables = Number(calcDeliverables.value);
+      const rush = calcRush.checked ? Number(calcRush.value) : 0;
+      const total = baseRate * hours + deliverables + rush;
+
+      hoursValue.textContent = hours;
+      estimateTotal.textContent = formatMoney(total);
+    }
+
+    [calcType, calcHours, calcDeliverables, calcRush].forEach((input) => {
+      input.addEventListener("input", updateEstimate);
+      input.addEventListener("change", updateEstimate);
+    });
+
+    updateEstimate();
+
+    const inquiryForm = document.getElementById("inquiryForm");
+    inquiryForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const subject = encodeURIComponent("RIVRANT project inquiry");
+      const body = encodeURIComponent(
+        `Name: ${document.getElementById("clientName").value}\n` +
+        `Email: ${document.getElementById("clientEmail").value}\n` +
+        `Project type: ${document.getElementById("projectType").value}\n\n` +
+        `${document.getElementById("projectMessage").value}`
+      );
+
+      window.location.href = `mailto:rivrantstudio@gmail.com?subject=${subject}&body=${body}`;
+    });
+  </script>
 </body>
 </html>
