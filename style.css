@@ -1040,13 +1040,35 @@ video.cover {
   .contact-card textarea {
     padding: 13px 14px;
     border-radius: 14px;
-  }.intro-container {
+  }
+  #particleOrbit {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.intro-container {
   position: relative;
   z-index: 2;
 }}
 
 
-/* === RIVRANT FINAL MOBILE / CONTACT UPDATE === */
+/* === FINAL CLEANUP: NO PARTICLES + MOBILE CONSISTENCY === */
+#particleOrbit {
+  display: none !important;
+}
+
+html:has(body.intro) {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body.intro {
   width: 100%;
   height: 100vh;
@@ -1057,7 +1079,6 @@ body.intro {
   position: fixed;
   inset: 0;
   background: #030303;
-  overscroll-behavior: none;
 }
 
 body.intro .page-bg,
@@ -1069,21 +1090,21 @@ body.intro .noise {
 body.intro .page-bg {
   z-index: 0;
   background:
-    radial-gradient(circle at 50% 46%, rgba(255,255,255,0.09), transparent 34%),
-    radial-gradient(circle at 22% 18%, rgba(255,255,255,0.045), transparent 26%),
-    radial-gradient(circle at 80% 78%, rgba(255,255,255,0.035), transparent 28%),
+    radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), transparent 34%),
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent 26%),
+    radial-gradient(circle at 80% 75%, rgba(255,255,255,0.045), transparent 28%),
     linear-gradient(180deg, #070707 0%, #010101 100%);
 }
 
 body.intro .noise {
   z-index: 1;
-  opacity: 0.03;
+  opacity: 0.035;
 }
 
 body.intro .intro-container {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 5;
   width: 100%;
   height: 100vh;
   height: 100svh;
@@ -1120,6 +1141,7 @@ body.intro .intro-container .btn {
   text-underline-offset: 4px;
 }
 
+/* === PRICING CALCULATOR === */
 .pricing-calculator {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -1213,6 +1235,69 @@ body.intro .intro-container .btn {
   padding-top: 0;
 }
 
+/* === LIVE INSTAGRAM FEED SECTION === */
+.instagram-section {
+  padding-top: 70px;
+}
+
+.instagram-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.instagram-cta {
+  flex: 0 0 auto;
+}
+
+.instagram-widget-shell {
+  min-height: 360px;
+  border: 1px solid var(--line);
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,0.08), transparent 28%),
+    rgba(255,255,255,0.045);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  padding: 18px;
+}
+
+.instagram-widget-shell iframe,
+.instagram-widget-shell .elfsight-app,
+.instagram-widget-shell [class*="elfsight-app"] {
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+}
+
+.instagram-widget-placeholder {
+  min-height: 324px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 34px;
+  border: 1px dashed rgba(255,255,255,0.2);
+  border-radius: 20px;
+  background: rgba(0,0,0,0.2);
+}
+
+.instagram-widget-placeholder h3 {
+  max-width: 520px;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.instagram-widget-placeholder p {
+  max-width: 520px;
+  color: var(--muted);
+}
+
 @media (max-width: 980px) {
   .pricing-calculator {
     grid-template-columns: 1fr;
@@ -1257,6 +1342,7 @@ body.intro .intro-container .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: auto;
     min-height: 32px;
     padding: 7px 12px;
     border: 1px solid var(--line);
@@ -1297,6 +1383,32 @@ body.intro .intro-container .btn {
     flex-direction: column;
     gap: 8px;
     padding: 18px;
+  }
+
+  .instagram-section {
+    padding-top: 48px;
+  }
+
+  .instagram-head {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 22px;
+  }
+
+  .instagram-cta {
+    width: fit-content;
+  }
+
+  .instagram-widget-shell {
+    min-height: 300px;
+    border-radius: 18px;
+    padding: 12px;
+  }
+
+  .instagram-widget-placeholder {
+    min-height: 276px;
+    padding: 24px 18px;
+    border-radius: 16px;
   }
 }
 
