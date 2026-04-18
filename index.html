@@ -75,7 +75,7 @@ function resize(force = false) {
 
 class Particle {
   constructor() {
-    this.size = isMobile() ? 4 + Math.random() * 5.5 : 4.5 + Math.random() * 7.5;
+    this.size = isMobile() ? 1 + Math.random() * 5.5 : 4.5 + Math.random() * 7.5;
     this.x = this.size + Math.random() * Math.max(1, w - this.size * 2);
     this.y = this.size + Math.random() * Math.max(1, h - this.size * 2);
 
