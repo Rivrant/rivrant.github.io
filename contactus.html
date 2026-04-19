@@ -45,7 +45,7 @@
           <span class="eyebrow">Book RIVRANT</span>
           <h3>Contact details</h3>
           <ul>
-            <li>Email: <a href="mailto:rivrantstudios@gmail.com">rivrantstudios@gmail.com</a></li>
+            <li>Email: <a href="mailto:rivrantstudio@gmail.com">rivrantstudio@gmail.com</a></li>
             <li>Instagram: <a href="https://www.instagram.com/rivrant/" target="_blank" rel="noopener">@rivrant</a></li>
             <li>Base: Toronto / available for select travel</li>
             <li>Typical work: campaigns, portraits, events, social visuals, and documentary-style pieces</li>
@@ -58,7 +58,7 @@
           <form id="inquiryForm">
             <input id="clientName" type="text" placeholder="Your name">
             <input id="clientEmail" type="email" placeholder="Email address">
-            <input id="projectType" type="text" placeholder="Project type">
+            <input id="projectTypeText" type="text" placeholder="Project type">
             <textarea id="projectMessage" placeholder="Tell us about the shoot, timeline, location, and deliverables"></textarea>
             <button class="btn" type="submit">Send inquiry</button>
           </form>
@@ -67,53 +67,118 @@
     </section>
 
     <section class="section pricing-section">
-      <div class="container pricing-calculator">
-        <div class="pricing-copy">
-          <span class="eyebrow">Estimator</span>
-          <h2 class="section-title">Project pricing calculator.</h2>
-          <p class="section-copy">Use this as a starting point. Final pricing can shift depending on location, crew, editing needs, licensing, and turnaround.</p>
+      <div class="container">
+        <div class="pricing-header">
+          <div>
+            <span class="eyebrow">Quote builder</span>
+            <h2 class="section-title">Build a cleaner starting estimate.</h2>
+            <p class="section-copy">This gives clients a polished ballpark without making the site feel like a basic calculator. Final pricing still depends on concept, location, editing depth, usage, and turnaround.</p>
+          </div>
+          <a class="btn-secondary pricing-header-link" href="mailto:rivrantstudio@gmail.com">Email directly</a>
         </div>
 
-        <article class="contact-card calculator-card">
-          <div class="calculator-row">
-            <label for="calcType">Project type</label>
-            <select id="calcType">
-              <option value="250">Headshots</option>
-              <option value="400">Photo / editorial</option>
-              <option value="550">Event coverage</option>
-              <option value="750">Video / campaign</option>
-              <option value="650">Documentary-style piece</option>
-            </select>
-          </div>
+        <div class="quote-builder">
+          <article class="quote-control-panel">
+            <div class="quote-block">
+              <div class="quote-block-head">
+                <span>01</span>
+                <h3>Choose the production lane</h3>
+              </div>
 
-          <div class="calculator-row">
-            <div class="range-label">
-              <label for="calcHours">Shoot hours</label>
-              <strong><span id="hoursValue">3</span> hrs</strong>
+              <div class="package-grid" role="radiogroup" aria-label="Project package">
+                <button class="package-card" type="button" data-package="headshots" data-rate="275" aria-pressed="false">
+                  <span class="package-kicker">Headshots</span>
+                  <strong>Clean portraits</strong>
+                  <small>Profiles, team photos, personal brand</small>
+                </button>
+                <button class="package-card is-active" type="button" data-package="editorial" data-rate="475" aria-pressed="true">
+                  <span class="package-kicker">Editorial</span>
+                  <strong>Photo direction</strong>
+                  <small>Lookbooks, campaigns, image systems</small>
+                </button>
+                <button class="package-card" type="button" data-package="events" data-rate="625" aria-pressed="false">
+                  <span class="package-kicker">Events</span>
+                  <strong>Coverage</strong>
+                  <small>Launches, recaps, nightlife, activations</small>
+                </button>
+                <button class="package-card" type="button" data-package="video" data-rate="850" aria-pressed="false">
+                  <span class="package-kicker">Video</span>
+                  <strong>Motion piece</strong>
+                  <small>Campaign clips, reels, mini-doc work</small>
+                </button>
+              </div>
             </div>
-            <input id="calcHours" type="range" min="1" max="12" value="3">
-          </div>
 
-          <div class="calculator-row">
-            <label for="calcDeliverables">Deliverables</label>
-            <select id="calcDeliverables">
-              <option value="0">Essentials package</option>
-              <option value="150">Extra edited selects</option>
-              <option value="300">Social rollout package</option>
-              <option value="500">Full campaign package</option>
-            </select>
-          </div>
+            <div class="quote-block quote-split">
+              <div>
+                <div class="quote-block-head">
+                  <span>02</span>
+                  <h3>Scale the shoot</h3>
+                </div>
 
-          <label class="rush-option">
-            <input id="calcRush" type="checkbox" value="150">
-            Add rush turnaround
-          </label>
+                <div class="slider-card">
+                  <div class="slider-meta">
+                    <label for="quoteHours">Shoot time</label>
+                    <strong><span id="quoteHoursValue">3</span> hrs</strong>
+                  </div>
+                  <input id="quoteHours" type="range" min="1" max="12" value="3">
+                </div>
+              </div>
 
-          <div class="estimate-box">
-            <span>Estimated starting price</span>
-            <strong id="estimateTotal">$1,200</strong>
-          </div>
-        </article>
+              <div>
+                <div class="quote-block-head muted-head">
+                  <span>03</span>
+                  <h3>Add-ons</h3>
+                </div>
+
+                <div class="add-on-grid">
+                  <label class="addon-chip">
+                    <input type="checkbox" value="175" data-addon="Extra edited selects">
+                    <span>Extra edited selects</span>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" value="325" data-addon="Social rollout pack">
+                    <span>Social rollout pack</span>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" value="450" data-addon="Creative direction">
+                    <span>Creative direction</span>
+                  </label>
+                  <label class="addon-chip">
+                    <input type="checkbox" value="250" data-addon="Rush turnaround">
+                    <span>Rush turnaround</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="quote-summary-card">
+            <span class="estimate-label">Estimated starting range</span>
+            <div class="estimate-total" id="quoteEstimate">$1,425</div>
+            <p id="quoteSummary">Editorial project for 3 hours.</p>
+
+            <div class="estimate-divider"></div>
+
+            <dl class="quote-breakdown">
+              <div>
+                <dt>Production lane</dt>
+                <dd id="quotePackageName">Editorial</dd>
+              </div>
+              <div>
+                <dt>Shoot time</dt>
+                <dd><span id="quoteHoursSummary">3</span> hours</dd>
+              </div>
+              <div>
+                <dt>Add-ons</dt>
+                <dd id="quoteAddons">None selected</dd>
+              </div>
+            </dl>
+
+            <a id="quoteEmailLink" class="btn quote-email-btn" href="mailto:rivrantstudio@gmail.com">Start with this estimate</a>
+            <small class="estimate-note">Ballpark only. Final quote is confirmed after project details.</small>
+          </aside>
+        </div>
       </div>
     </section>
   </main>
@@ -121,39 +186,84 @@
   <footer class="footer">
     <div class="footer-inner">
       <div>RIVRANT Contact</div>
-      <div><a href="mailto:rivrantstudio@gmail.com">rivrantstudios@gmail.com</a> / <a href="https://www.instagram.com/rivrant/" target="_blank" rel="noopener">@rivrant</a></div>
+      <div><a href="mailto:rivrantstudio@gmail.com">rivrantstudio@gmail.com</a> / <a href="https://www.instagram.com/rivrant/" target="_blank" rel="noopener">@rivrant</a></div>
     </div>
   </footer>
 
   <script>
-    const calcType = document.getElementById("calcType");
-    const calcHours = document.getElementById("calcHours");
-    const calcDeliverables = document.getElementById("calcDeliverables");
-    const calcRush = document.getElementById("calcRush");
-    const estimateTotal = document.getElementById("estimateTotal");
-    const hoursValue = document.getElementById("hoursValue");
+    const packageButtons = Array.from(document.querySelectorAll(".package-card"));
+    const quoteHours = document.getElementById("quoteHours");
+    const quoteHoursValue = document.getElementById("quoteHoursValue");
+    const quoteHoursSummary = document.getElementById("quoteHoursSummary");
+    const quoteEstimate = document.getElementById("quoteEstimate");
+    const quotePackageName = document.getElementById("quotePackageName");
+    const quoteAddons = document.getElementById("quoteAddons");
+    const quoteSummary = document.getElementById("quoteSummary");
+    const quoteEmailLink = document.getElementById("quoteEmailLink");
+    const addonInputs = Array.from(document.querySelectorAll(".addon-chip input"));
+
+    const packageNames = {
+      headshots: "Headshots",
+      editorial: "Editorial",
+      events: "Events",
+      video: "Video"
+    };
+
+    let selectedPackage = packageButtons.find((button) => button.classList.contains("is-active")) || packageButtons[0];
 
     function formatMoney(value) {
       return "$" + value.toLocaleString("en-CA");
     }
 
-    function updateEstimate() {
-      const baseRate = Number(calcType.value);
-      const hours = Number(calcHours.value);
-      const deliverables = Number(calcDeliverables.value);
-      const rush = calcRush.checked ? Number(calcRush.value) : 0;
-      const total = baseRate * hours + deliverables + rush;
+    function updateQuote() {
+      const packageKey = selectedPackage.dataset.package;
+      const packageName = packageNames[packageKey];
+      const baseRate = Number(selectedPackage.dataset.rate);
+      const hours = Number(quoteHours.value);
+      const selectedAddons = addonInputs.filter((input) => input.checked);
+      const addonTotal = selectedAddons.reduce((sum, input) => sum + Number(input.value), 0);
+      const total = Math.round((baseRate * hours + addonTotal) / 25) * 25;
+      const addonLabels = selectedAddons.map((input) => input.dataset.addon);
 
-      hoursValue.textContent = hours;
-      estimateTotal.textContent = formatMoney(total);
+      quoteHoursValue.textContent = hours;
+      quoteHoursSummary.textContent = hours;
+      quoteEstimate.textContent = formatMoney(total);
+      quotePackageName.textContent = packageName;
+      quoteAddons.textContent = addonLabels.length ? addonLabels.join(", ") : "None selected";
+      quoteSummary.textContent = `${packageName} project for ${hours} hour${hours === 1 ? "" : "s"}${addonLabels.length ? " with " + addonLabels.join(", ").toLowerCase() : ""}.`;
+
+      const subject = encodeURIComponent("RIVRANT estimate inquiry");
+      const body = encodeURIComponent(
+        `Hi RIVRANT,\n\nI am interested in starting with this estimate:\n\n` +
+        `Production lane: ${packageName}\n` +
+        `Shoot time: ${hours} hour${hours === 1 ? "" : "s"}\n` +
+        `Add-ons: ${addonLabels.length ? addonLabels.join(", ") : "None selected"}\n` +
+        `Estimated starting range: ${formatMoney(total)}\n\n` +
+        `Project details:`
+      );
+
+      quoteEmailLink.href = `mailto:rivrantstudio@gmail.com?subject=${subject}&body=${body}`;
     }
 
-    [calcType, calcHours, calcDeliverables, calcRush].forEach((input) => {
-      input.addEventListener("input", updateEstimate);
-      input.addEventListener("change", updateEstimate);
+    packageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        packageButtons.forEach((item) => {
+          item.classList.remove("is-active");
+          item.setAttribute("aria-pressed", "false");
+        });
+        button.classList.add("is-active");
+        button.setAttribute("aria-pressed", "true");
+        selectedPackage = button;
+        updateQuote();
+      });
     });
 
-    updateEstimate();
+    [quoteHours, ...addonInputs].forEach((input) => {
+      input.addEventListener("input", updateQuote);
+      input.addEventListener("change", updateQuote);
+    });
+
+    updateQuote();
 
     const inquiryForm = document.getElementById("inquiryForm");
     inquiryForm.addEventListener("submit", (event) => {
@@ -163,11 +273,11 @@
       const body = encodeURIComponent(
         `Name: ${document.getElementById("clientName").value}\n` +
         `Email: ${document.getElementById("clientEmail").value}\n` +
-        `Project type: ${document.getElementById("projectType").value}\n\n` +
+        `Project type: ${document.getElementById("projectTypeText").value}\n\n` +
         `${document.getElementById("projectMessage").value}`
       );
 
-      window.location.href = `mailto:rivrantstudios@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:rivrantstudio@gmail.com?subject=${subject}&body=${body}`;
     });
   </script>
 </body>
