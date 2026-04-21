@@ -1128,6 +1128,89 @@ body.intro .intro-container .btn {
   text-underline-offset: 4px;
 }
 
+
+/* === POLICY SECTION === */
+.policy-section {
+  padding-top: 70px;
+}
+
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.policy-card {
+  min-height: 240px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255,255,255,0.08), transparent 34%),
+    rgba(255,255,255,0.045);
+  box-shadow: var(--shadow);
+}
+
+.policy-card span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.14);
+  color: rgba(244,241,235,0.7);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+}
+
+.policy-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.08rem;
+}
+
+.policy-card p {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .policy-card {
+    transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+  }
+
+  .policy-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255,255,255,0.18);
+  }
+}
+
+@media (max-width: 980px) {
+  .policy-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .policy-section {
+    padding-top: 48px;
+  }
+
+  .policy-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .policy-card {
+    min-height: auto;
+    padding: 18px;
+    border-radius: 18px;
+  }
+}
+
 /* === PRICING CALCULATOR === */
 /* === PREMIUM QUOTE BUILDER === */
 .pricing-section {
